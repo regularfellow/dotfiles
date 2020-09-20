@@ -27,3 +27,14 @@ apt update
 echo "Install packages..."
 apt install -y postgresql mariadb-server mariadb-client esl-erlang elixir \
     python-is-python3 python3-pip gh zsh stow
+
+# Set postgres password to postgres
+echo "Setting postgres password to postgres..."
+echo -e "postgres\npostgres" | passwd postgres
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+
+# Set maria root password to empty
+echo "Setting mariadb root password to empty..."
+mysql -e "UPDATE mysql.user SET Password = PASSWORD('') WHERE User = 'root';"
+mysql -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE User = 'root';"
+mysql -e "FLUSH PRIVILEGES;"
