@@ -1,0 +1,2 @@
+%sudo  ALL=(ALL) NOPASSWD: /usr/sbin/service mysql start
+%sudo  ALL=(ALL) NOPASSWD: /usr/sbin/service postgresql start
