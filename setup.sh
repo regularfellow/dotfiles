@@ -10,3 +10,10 @@ fi
 echo "Installing oh-my-zsh..."
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# Stow dotfiles
+echo "Stowing dotfiles..."
+rm ~/.zshrc 2> /dev/null
+stow zsh
+
+echo "Setup complete. Reload zshrc with 'source ~/.zshrc'."
