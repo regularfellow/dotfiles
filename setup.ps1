@@ -14,6 +14,9 @@ Write-Output "Setting up..."
 # cmd /c scoop bucket add nerd-fonts
 # cmd /c scoop install FiraCode
 
+$Roaming = [Environment]::GetFolderPath('ApplicationData')
+$Local = [Environment]::GetFolderPath('LocalApplicationData')
+
 # Windows Terminal
 Write-Output "Installing Windows Terminal config..."
 $TerminalSettingsDest = "$Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
@@ -30,6 +33,6 @@ $AutoStartDest = "$Roaming\Microsoft\Windows\Start Menu\Programs\Startup\autosta
 if (Test-Path -Path $AutoStartDest) {
     (Get-Item $AutoStartDest).Delete()
 }
-$null = New-Item -Path $AutoStartDest -ItemType SymbolicLink -Value ".\windows\autostart.bat"
+$null = New-Item -Path $AutoStartDest -ItemType SymbolicLink -Value ".\autostart.bat"
 
 Write-Output "Dotfiles installed."
