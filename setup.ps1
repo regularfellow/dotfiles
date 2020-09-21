@@ -23,3 +23,13 @@ if (Test-Path -Path $TerminalSettingsDest) {
 $null = New-Item -Path $TerminalSettingsDest -ItemType SymbolicLink -Value ".\Microsoft.WindowsTerminal_8wekyb3d8bbwe\settings.json"
 $null = New-Item -Path "C:\Users\Public\Pictures\Microsoft.WindowsTerminal_8wekyb3d8bbwe" -ItemType Directory -Force
 $null = Copy-Item ".\Microsoft.WindowsTerminal_8wekyb3d8bbwe\ssh.png" -Destination "C:\Users\Public\Pictures\Microsoft.WindowsTerminal_8wekyb3d8bbwe\ssh.png"
+
+# Autostart pg/maria
+Write-Output "Installing WSL autostart file..."
+$AutoStartDest = "$Roaming\Microsoft\Windows\Start Menu\Programs\Startup\autostart.bat"
+if (Test-Path -Path $AutoStartDest) {
+    (Get-Item $AutoStartDest).Delete()
+}
+$null = New-Item -Path $AutoStartDest -ItemType SymbolicLink -Value ".\windows\autostart.bat"
+
+Write-Output "Dotfiles installed."
