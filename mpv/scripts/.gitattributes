@@ -1,0 +1,2 @@
+random.lua filter=git-crypt diff=git-crypt
+media.lua filter=git-crypt diff=git-crypt
