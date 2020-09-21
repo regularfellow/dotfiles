@@ -41,6 +41,11 @@ if (Test-Path -Path $MpvDest) {
 }
 $null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
 
+# check screencap dir exists
+if (!(Test-Path -Path "$HOME\Caps")) {
+    Write-Error "~/Caps folder is missing."
+}
+
 # youtube-dl
 Write-Output "Installing youtube-dl config..."
 $YtdlDest = "$Roaming\youtube-dl"
