@@ -33,4 +33,12 @@ if (Test-Path -Path $SublimeSettingsDest) {
 }
 $null = New-Item -Path $SublimeSettingsDest -ItemType SymbolicLink -Value ".\Sublime\Preferences.sublime-settings"
 
+# mpv
+Write-Output "Installing mpv config..."
+$MpvDest = "$Roaming\mpv"
+if (Test-Path -Path $MpvDest) {
+    (Get-Item $MpvDest).Delete()
+}
+$null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
+
 Write-Output "Dotfiles installed."
