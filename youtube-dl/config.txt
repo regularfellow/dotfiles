@@ -1,0 +1,5 @@
+--external-downloader aria2c
+--external-downloader-args "-x 16 -s 16 -k 1M -j 16"
+-f bestvideo[vcodec=vp9.2]+(bestaudio[acodec=opus]/bestaudio)/bestvideo[vcodec=vp9][height>=1400]+(bestaudio[acodec=opus]/bestaudio)/bestvideo+bestaudio/best
+--write-sub
+--sub-lang en-US,en_US,en

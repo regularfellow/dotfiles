@@ -41,4 +41,12 @@ if (Test-Path -Path $MpvDest) {
 }
 $null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
 
+# youtube-dl
+Write-Output "Installing youtube-dl config..."
+$YtdlDest = "$Roaming\youtube-dl"
+if (Test-Path -Path $YtdlDest) {
+    (Get-Item $YtdlDest).Delete()
+}
+$null = New-Item -Path $YtdlConfDest -ItemType SymbolicLink -Value ".\youtube-dl"
+
 Write-Output "Dotfiles installed."
