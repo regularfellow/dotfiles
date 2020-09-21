@@ -52,6 +52,6 @@ $YtdlDest = "$Roaming\youtube-dl"
 if (Test-Path -Path $YtdlDest) {
     Remove-Item $YtdlDest -Recurse
 }
-$null = New-Item -Path $YtdlConfDest -ItemType SymbolicLink -Value ".\youtube-dl"
+$null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
 
 Write-Output "Dotfiles installed."
