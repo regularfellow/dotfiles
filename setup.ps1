@@ -36,10 +36,14 @@ $null = New-Item -Path $SublimeSettingsDest -ItemType SymbolicLink -Value ".\Sub
 # mpv
 Write-Output "Installing mpv config..."
 $MpvDest = "$Roaming\mpv"
-if (Test-Path -Path $MpvDest) {
+$MpvDestExists = Test-Path -Path $MpvDest
+$MpvDestIsSymlink = $MpvDestExists -and (Get-Item $MpvDest).Attributes.ToString() -match "ReparsePoint"
+if ($MpvDestExists -and !($MpvDestIsSymlink)) {
     Remove-Item $MpvDest -Recurse
 }
-$null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
+if (!($MpvDestIsSymlink)) {
+    $null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
+}
 
 # check screencap dir exists
 if (!(Test-Path -Path "$HOME\Caps")) {
@@ -49,9 +53,13 @@ if (!(Test-Path -Path "$HOME\Caps")) {
 # youtube-dl
 Write-Output "Installing youtube-dl config..."
 $YtdlDest = "$Roaming\youtube-dl"
-if (Test-Path -Path $YtdlDest) {
+$YtdlDestExists = Test-Path -Path $YtdlDest
+$YtdlDestIsSymlink = $YtdlDestExists -and (Get-Item $YtdlDest).Attributes.ToString() -match "ReparsePoint"
+if ($YtdlDestExists -and !($YtdlDestIsSymlink)) {
     Remove-Item $YtdlDest -Recurse
 }
-$null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
+if (!($YtdlDestIsSymlink)) {
+    $null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
+}
 
 Write-Output "Dotfiles installed."
