@@ -36,7 +36,7 @@ $null = New-Item -Path $SublimeSettingsDest -ItemType SymbolicLink -Value ".\Sub
 # mpv
 Write-Output "Installing mpv config..."
 $MpvDest = "$Roaming\mpv"
-if (Test-Path -Path $MpvDest) {
+if ((Test-Path -Path $MpvDest) -and (!((Get-Item $MpvDest).Attributes.ToString() -match "ReparsePoint"))) {
     Remove-Item $MpvDest -Recurse -Force
 }
 $null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
@@ -49,7 +49,7 @@ if (!(Test-Path -Path "$HOME\Caps")) {
 # youtube-dl
 Write-Output "Installing youtube-dl config..."
 $YtdlDest = "$Roaming\youtube-dl"
-if (Test-Path -Path $YtdlDest) {
+if ((Test-Path -Path $YtdlDest) -and (!((Get-Item $YtdlDest).Attributes.ToString() -match "ReparsePoint"))) {
     Remove-Item $YtdlDest -Recurse -Force
 }
 $null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
