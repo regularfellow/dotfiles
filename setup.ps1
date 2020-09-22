@@ -37,7 +37,7 @@ $null = New-Item -Path $SublimeSettingsDest -ItemType SymbolicLink -Value ".\Sub
 Write-Output "Installing mpv config..."
 $MpvDest = "$Roaming\mpv"
 if (Test-Path -Path $MpvDest) {
-    Remove-Item $MpvDest -Recurse
+    Remove-Item $MpvDest -Recurse -Force
 }
 $null = New-Item -Path $MpvDest -ItemType SymbolicLink -Value ".\mpv"
 
@@ -50,7 +50,7 @@ if (!(Test-Path -Path "$HOME\Caps")) {
 Write-Output "Installing youtube-dl config..."
 $YtdlDest = "$Roaming\youtube-dl"
 if (Test-Path -Path $YtdlDest) {
-    Remove-Item $YtdlDest -Recurse
+    Remove-Item $YtdlDest -Recurse -Force
 }
 $null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
 
