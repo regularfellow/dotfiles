@@ -39,10 +39,17 @@ mysql -e "UPDATE mysql.user SET Password = PASSWORD('') WHERE User = 'root';"
 mysql -e "UPDATE mysql.user SET plugin='mysql_native_password' WHERE User = 'root';"
 mysql -e "FLUSH PRIVILEGES;"
 
-# Start databases without sudo
-echo "Installing databases sudoers file..."
 SCRIPT_PATH=`realpath $0`
 SCRIPT_DIR=`dirname $SCRIPT_PATH`
+
+# Add postgresql configuration
+echo "Adding postgresql configuration..."
+POSTGRESQL_CONF=`sudo -u postgres psql -t -P format=unaligned -c 'SHOW config_file'`
+POSTGRESQL_DIR=`dirname $POSTGRESQL_CONF`
+ln -s "$SCRIPT_DIR/postgresql/timezone.conf" "$POSTGRESQL_DIR/conf.d/timezone.conf"
+
+# Start databases without sudo
+echo "Installing databases sudoers file..."
 rm /etc/sudoers.d/databases 2> /dev/null 
 cp "$SCRIPT_DIR/sudoers.d/databases" /etc/sudoers.d/databases
 chown root /etc/sudoers.d/databases
