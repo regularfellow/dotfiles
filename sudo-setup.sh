@@ -46,7 +46,11 @@ SCRIPT_DIR=`dirname $SCRIPT_PATH`
 echo "Adding postgresql configuration..."
 POSTGRESQL_CONF=`sudo -u postgres psql -t -P format=unaligned -c 'SHOW config_file'`
 POSTGRESQL_DIR=`dirname $POSTGRESQL_CONF`
-ln -s "$SCRIPT_DIR/postgresql/timezone.conf" "$POSTGRESQL_DIR/conf.d/timezone.conf"
+ln -sf "$SCRIPT_DIR/postgresql/timezone.conf" "$POSTGRESQL_DIR/conf.d/60-timezone.conf"
+
+# Add maria configuration
+echo "Adding maria configuration..."
+ln -sf "$SCRIPT_DIR/maria/timezone.cnf" "/etc/mysql/mariadb.conf.d/60-timezone.cnf"
 
 # Start databases without sudo
 echo "Installing databases sudoers file..."
