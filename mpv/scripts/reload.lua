@@ -43,7 +43,7 @@
 --
 -- # when the end-of-file is reached, reload the stream to check
 -- # if there is more content available.
--- reload_eof_enabled=no
+reload_eof_enabled=yes
 --
 -- # keybinding to reload stream from current time position
 -- # you can disable keybinding by setting it to empty value
