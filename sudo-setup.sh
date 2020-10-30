@@ -26,7 +26,7 @@ apt-add-repository https://cli.github.com/packages
 apt update
 echo "Install packages..."
 apt install -y postgresql mariadb-server mariadb-client esl-erlang elixir \
-    python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools
+    python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools libmysqlclient-dev
 
 # Set postgres password to postgres
 echo "Setting postgres password to postgres..."
