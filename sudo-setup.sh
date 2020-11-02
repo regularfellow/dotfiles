@@ -26,7 +26,8 @@ apt-add-repository https://cli.github.com/packages
 apt update
 echo "Install packages..."
 apt install -y postgresql mariadb-server mariadb-client esl-erlang elixir \
-    python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools libmysqlclient-dev
+    python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools libmysqlclient-dev \
+    ruby-full
 
 # Set postgres password to postgres
 echo "Setting postgres password to postgres..."
@@ -51,6 +52,9 @@ ln -sf "$SCRIPT_DIR/postgresql/timezone.conf" "$POSTGRESQL_DIR/conf.d/60-timezon
 # Add maria configuration
 echo "Adding maria configuration..."
 ln -sf "$SCRIPT_DIR/maria/timezone.cnf" "/etc/mysql/mariadb.conf.d/60-timezone.cnf"
+
+# Install useful gem
+gem install htmlbeautifier
 
 # Start databases without sudo
 echo "Installing databases sudoers file..."
