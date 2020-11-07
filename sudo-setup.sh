@@ -11,6 +11,9 @@ echo "Update existing packages..."
 apt update
 apt upgrade -y
 
+# Add node repo
+curl -sL https://deb.nodesource.com/setup_15.x | bash -
+
 # Add erlang repo
 echo "Add Erlang repo..."
 wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
@@ -27,7 +30,7 @@ apt update
 echo "Install packages..."
 apt install -y postgresql mariadb-server mariadb-client esl-erlang elixir \
     python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools libmysqlclient-dev \
-    ruby-full
+    ruby-full nodejs
 
 # Set postgres password to postgres
 echo "Setting postgres password to postgres..."
