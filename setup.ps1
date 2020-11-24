@@ -24,6 +24,8 @@ if (Test-Path -Path $TerminalSettingsDest) {
     (Get-Item $TerminalSettingsDest).Delete()
 }
 $null = New-Item -Path $TerminalSettingsDest -ItemType SymbolicLink -Value ".\Microsoft.WindowsTerminal_8wekyb3d8bbwe\settings.json"
+$null = New-Item -Path "C:\Users\Public\Pictures\Microsoft.WindowsTerminal_8wekyb3d8bbwe" -ItemType Directory -Force
+$null = Copy-Item ".\Microsoft.WindowsTerminal_8wekyb3d8bbwe\ssh.png" -Destination "C:\Users\Public\Pictures\Microsoft.WindowsTerminal_8wekyb3d8bbwe\ssh.png"
 
 # Sublime
 Write-Output "Installing Sublime Text 3 settings..."
