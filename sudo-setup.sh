@@ -32,6 +32,11 @@ apt install -y postgresql mariadb-server mariadb-client esl-erlang elixir \
     python-is-python3 python3-pip python3-venv gh zsh stow inotify-tools libmysqlclient-dev \
     ruby-full nodejs
 
+# Start databases
+echo "Start databases..."
+service mysql start
+service postgresql start
+
 # Set postgres password to postgres
 echo "Setting postgres password to postgres..."
 echo -e "postgres\npostgres" | passwd postgres
@@ -65,10 +70,5 @@ rm /etc/sudoers.d/databases 2> /dev/null
 cp "$SCRIPT_DIR/sudoers.d/databases" /etc/sudoers.d/databases
 chown root /etc/sudoers.d/databases
 chmod 0440 /etc/sudoers.d/databases
-
-# Start databases
-echo "Start databases..."
-service mysql start
-service postgresql start
 
 echo "Setup complete."
