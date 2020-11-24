@@ -64,4 +64,12 @@ if (!($YtdlDestIsSymlink)) {
     $null = New-Item -Path $YtdlDest -ItemType SymbolicLink -Value ".\youtube-dl"
 }
 
+# Autostart pg/maria
+Write-Output "Installing WSL autostart file..."
+$AutoStartDest = "$Roaming\Microsoft\Windows\Start Menu\Programs\Startup\autostart.bat"
+if (Test-Path -Path $AutoStartDest) {
+    (Get-Item $AutoStartDest).Delete()
+}
+$null = New-Item -Path $AutoStartDest -ItemType SymbolicLink -Value ".\autostart.bat"
+
 Write-Output "Dotfiles installed."
