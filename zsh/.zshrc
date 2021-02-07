@@ -105,3 +105,6 @@ PATH=$PATH:$HOME/.cargo/bin
 
 # Windows explorer
 alias explorer=/mnt/c/Windows/explorer.exe
+
+# direnv
+eval "$(direnv hook zsh)"
